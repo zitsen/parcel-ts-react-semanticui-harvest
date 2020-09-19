@@ -1,0 +1,52 @@
+{
+  "name": "parcel-semantic-ui-less",
+  "module": "dist/module/index.js",
+  "browser": "dist/browser/index.js",
+  "browserslist": [
+    "> 1%",
+    "not dead"
+  ],
+  "engines": {
+    "node": ">=8.x"
+  },
+  "source": "src/index.js",
+  "targets": {
+    "main": {
+      "node": [
+        "^8.0.0"
+      ]
+    },
+    "module": {
+      "node": [
+        "^8.0.0"
+      ]
+    },
+    "browser": {
+      "browsers": [
+        "> 1%",
+        "not dead"
+      ]
+    }
+  },
+  "scripts": {
+    "dev": "parcel examples/index.html -d dev/examples",
+    "build:examples": "parcel build examples/index.html -d dist/examples -t browser", 
+    "build:module": "parcel build src/index.js -d dist/module -t node",
+    "build:browser": "parcel build src/index.js -d dist/browser -t browser"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
+    "less": "^3.12.2",
+    "parcel": "^1.12.4"
+  },
+  "dependencies": {
+    "core-js": "3",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "semantic-ui-less": "^2.4.1",
+    "semantic-ui-react": "^1.2.1",
+    "use-debounce": "^4.0.0"
+  }
+}
