@@ -1,4 +1,4 @@
-# Parcel + React + Semantic-UI Setup
+# Parcel + Typescript + React + Semantic-UI Setup
 
 Initialize workspace
 
@@ -11,67 +11,53 @@ Edit `package.json` for your own information
 
 ```json
 {
-  "name": "parcel-semantic-ui-less",
-  "main": "dist/main/index.js",
-  "module": "dist/module/index.js",
-  "browser": "dist/browser/index.js",
-  "browserslist": [
-    "> 1%",
-    "not dead"
+  "name": "harvest-farm",
+  "source": [
+    "src/index.tsx",
+    "src/index.html"
   ],
-  "engines": {
-    "node": ">=4.x"
+  "scripts": {
+    "start": "parcel serve --dist-dir .dev ./src/index.html",
+    "build": "parcel build  --public-url ./ ./src/index.html",
+    "preinstall": "npx npm-force-resolutions"
   },
-  "source": "src/index.js",
-  "targets": {
-    "main": {
-      "node": [
-        "^4.0.0"
-      ]
-    },
-    "module": {
-      "node": [
-        "^8.0.0"
-      ]
-    },
-    "browser": {
-      "browsers": [
-        "> 1%",
-        "not dead"
-      ]
-    }
+  "resolutions": {
+    "browserslist": "4.14.2",
+    "caniuse-lite": "1.0.30001129"
   }
 }
 ```
 
-Setup `parcel` + `babel 7` + `react`.
+Setup `parcel` + `babel 7` + `react` + `typescript`.
 
 ```sh
-yarn add --dev parcel @babel/core @babel/preset-env @babel/preset-react
-yarn add react react-dom
+yarn add --dev parcel@next @babel/core @babel/preset-env @babel/preset-react @babel/preset-typescript @babel/plugin-transform-runtime
+yarn add react react-dom react-router react-router-dom
+```
+
+Setup `tsconfig.json`:
+
+```json
+{
+  "compilerOptions": {
+    "jsx": "react",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true // fix @types/lodash error
+  },
+  "include": ["src/**/*"]
+}
 ```
 
 Setup `.babelrc`:
 
 ```json
 {
-    "presets": [
-        "@babel/preset-env", "@babel/preset-react"
-    ],
-    "env": {
-        "development": {
-            "presets": [
-                [
-                    "@babel/preset-react",
-                    {
-                        "development": true
-                    }
-                ]
-            ]
-        }
-    }
+  "presets": ["@babel/preset-env", "@babel/preset-react", "@babel/preset-typescript"],
+  "plugins": ["@babel/plugin-transform-runtime"]
 }
 ```
+
+不加`@babel/plugin-transform-runtime`的话使用`async/await`会出现“regeneratorRuntime is not defined"错误。
 
 Add Semantic UI with `semantic-ui-react` and `semantic-ui-less`.
 
@@ -134,7 +120,7 @@ const BreadcrumbExampleSize = () => (
 export default BreadcrumbExampleSize
 ```
 
-Examples html `examples/index.html`:
+Examples html `src/index.html`:
 
 ```html
 <html>
@@ -145,27 +131,27 @@ Examples html `examples/index.html`:
   </head>
   <body>
     <div id="app"></div>
-    <script src="./index.js"></script>
+    <script src="./index.tsx"></script>
   </body>
 </html>
 ```
 
-`examples/index.js`:
+`src/index.tsx`:
 
-```js
+```ts
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Demo from '../src/index'
+import Demo from './Demo'
 let root = document.getElementById('app')
 ReactDOM.render(<Demo />, root)
 ```
 
 Node target support:
 
-```js
+```ts
 import React from 'react'
 import ReactDOMServer from 'react-dom/server'
-import Demo from '../src/index'
+import Demo from './Demo'
 
 let demo = <Demo />
 

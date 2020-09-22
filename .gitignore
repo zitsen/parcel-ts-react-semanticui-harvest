@@ -100,3 +100,9 @@ public/
 # Custom
 dist/
 .parcel-cache
+
+.dev/
+
+src/*.js
+package-lock.json
+yarn.lock

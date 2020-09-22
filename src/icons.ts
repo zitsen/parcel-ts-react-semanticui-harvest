@@ -1,0 +1,7 @@
+export { default as DAI } from '../assets/icons/dai.png'
+export { default as ETH } from '../assets/icons/eth.png'
+export { default as REN } from '../assets/icons/ren.png'
+export { default as USDC } from '../assets/icons/usdc.png'
+export { default as USDT } from '../assets/icons/usdt.png'
+export { default as WBTC } from '../assets/icons/wbtc.png'
+export { default as CRVRENWBTC } from '../assets/icons/crvrenwbtc.png'

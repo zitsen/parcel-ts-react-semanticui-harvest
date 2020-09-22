@@ -1,5 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import Products from '../src/index'
+import HarvestFarm from '../src/index'
 let root = document.getElementById('app')
-ReactDOM.render(<Products />, root)
+ReactDOM.render(<HarvestFarm />, root)
